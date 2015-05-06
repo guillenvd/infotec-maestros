@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>INFOTEC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/timeline.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/body.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/json/getNoticias.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body> 
+<div id="wrapper">
+        <div class="overlay"></div>
+    
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav" id="menu">         
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2" id="main">
+         <div class="page-header" style="">
+            <div class="col-lg-5" id="form">
+                <h1 id="timeline">Administración <a class="subhead" id="tipo">Noticias publicadas.</a></h1>
+            </div>
+            <div class="col-lg-7" id="form" style="float: right; text-align:center;">
+              <h1 id="timeline"><a class="logas" id="logas"></a></h1>
+            </div>
+        </div>
+        <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Carrera</th>
+                <th>Clasificación</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead> 
+        <tbody id="tbody">
+            <!--
+             <tr>
+                <td>Titulo</td>
+                <td>Cuerpo</td>
+                <td>Carrera</td>
+                <td>Clasificación</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Editar"><button class="btn btn-primary btn-xs" data-title="Editar" data-toggle="modal" data-target="#Editar" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><button class="btn btn-danger btn-xs" data-title="Eliminar" data-toggle="modal" data-target="#Eliminar" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+            </tr>
+            -->
+        </tbody>
+    </table>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+    
+<!--  modal para confimar eliminar los campos de una noticia -->
+    <div class="modal fade" id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="Editar" aria-hidden="true">
+        <div class="modal-dialog">    <!-- modal-content --> 
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Eliminar Noticia</h4>
+                </div>
+                <div class="modal-body">
+                    <center> 
+                        <input type="hidden" name="id-delete" id="id-delete"value="id-delete" value="Norway">
+                     <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>¿Seguro que desea eliminar este registro?<p id="titulo-delete"> <p></div>
+                    </center>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" class="btn btn-success" onclick="deleteConfirm();" ><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                </div>
+            </div>
+        </div>    <!-- /.modal-content --> 
+    </div>
+<!--/moda-->
+<!--  modal para modificar los campos de una noticia -->
+
+
+    <div class="modal fade" id="Editar" tabindex="-1" role="dialog" aria-labelledby="Editar" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                 <input type="hidden" name="id-update" id="id-update"value="id-delete" value="Norway">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Editar registro</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control " type="text" placeholder="Titulo" id="Titulo">
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="2" class="form-control" placeholder="Cuerpo" id="Cuerpo" style="resize: none;"  maxlength="255xers" ></textarea>
+                    </div>
+
+                    <div class="form-group" id="text-area">
+                        
+                    </div>
+
+                    <div class="form-group">
+                                            <select class="form-control" id="Carrera" name="Carrera" required="true">
+                                                <option value="">Seleccione una Carrera</option>
+                                           </select>                    
+                    </div>
+                    <div class="form-group">
+                                            <select class="form-control" id="Clasificacion" name="Clasificacion" required="true">
+                                                <option value="">Seleccione una clasificación</option>
+                                            </select>                    
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="button" onclick="sendNoticiaEdit();" class="btn btn-success btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign" ></span>Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+<script src="js/json/form.js"></script>
+
+    <!-- /#wrapper -->
+<script type="text/javascript">
+    $(document).ready(function() {
+      getDatos();
+    getClasificacion();
+    getCarreras();
+} );
+
+</script>
+</body>
+</html>

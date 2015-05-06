@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>INFOTEC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="css/file.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/timeline.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/body.js"></script>
+    <script src="js/file.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="js/menu.js"></script>
+
+</head>
+<body> <div id="wrapper">
+        <div class="overlay"></div>
+    
+       <!-- Menu -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav" id="menu">         
+            </ul>
+        </nav>
+        <!-- /#Menu-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2" id="main">
+                    
+                        <div class="page-header" style="">
+                                    <div class="col-lg-4" id="form">
+                                        <h1 id="timeline">Formulario <a class="subhead" id="tipo">Nueva </a></h1>
+                                    </div>
+                                    <div class="col-lg-8" id="form" style="float: right; text-align:center;">
+                                    <h1 id="timeline"><a class="logas" id="logas"></a></h1>
+                                    </div>
+                            </div>
+                        <!-- image input -->
+                       <form action="php/NuevaNoticia.php" enctype="multipart/form-data"  method="post">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <h1 style="text-align:center;">Formulario Noticia</h1>
+                                <div class="panel-body form-horizontal payment-form">
+                                    <div class="form-group">
+                                        <label for="Titulo" class="col-sm-3 control-label">Titulo</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="Titulo" name="Titulo" placeholder="Titulo de noticia" required="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Cuerpo" class="col-sm-3 control-label">Cuerpo</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" style="resize: none;"  maxlength="150"  id="Cuerpo" name="Cuerpo" placeholder="Cuerpo de maximo 150 carácteres" required="true"></textarea>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <label for="Fecha" class="col-sm-3 control-label">Fecha</label>
+                                        <div class="col-sm-9">
+                                            <input type="date" class="form-control" id="Fecha" name="Fecha" readonly="" ="true">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Carrera" class="col-sm-3 control-label">Carrera</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" id="Carrera" name="Carrera" required="true">
+                                                <option value="">Seleccione una Carrera</option>
+                                           </select>
+                                        </div>
+                                    </div>  
+                                    <div class="form-group">
+                                        <label for="Clasificación" class="col-sm-3 control-label">Clasificación</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" id="Clasificacion" name="Clasificacion" required="true">
+                                                <option value="">Seleccione una clasificación</option>
+                                            </select>
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <label for="Autor" class="col-sm-3 control-label">Autor</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="Autor" name="Autor" readonly="" ="true">
+                                        </div>
+                                    </div>   
+                                    <div class="form-group col-sm-12 text-left" style="float: right;">
+                                        <label for="status" class="col-sm-3 control-label">Imagen</label>
+                                        <div class="col-sm-9">
+                                            <div class   ="input-group  image-preview" style="text-align:left;">
+                                                <input type  ="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class  ="input-group-btn">
+                                                    <!-- image-preview-clear button -->
+                                                    <button type ="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                                        <span class  ="glyphicon glyphicon-remove"></span> Clear
+                                                    </button>
+                                                    <!-- image-preview-input -->
+                                                    <div class   ="btn btn-default image-preview-input">
+                                                        <span class  ="glyphicon glyphicon-folder-open"></span>
+                                                        <span class  ="image-preview-input-title">Buscar Imagen</span>
+                                                        <input type  ="file" accept="image/png, image/jpeg, image/gif" name="Imagen" id="Imagen"/> <!-- rename it -->
+                                                    </div>
+                                                </span>
+                                            </div><!-- /input-group image-preview [TO HERE]--> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 text-right">
+                                            <button type="submit" class="btn btn-default preview-add-button">
+                                                <span class="glyphicon glyphicon-send"></span> Enviar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>            
+                        </div> <!-- / panel preview -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+<script src="js/json/form.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("Fecha").valueAsDate = new Date();
+    document.getElementById("Autor").value = sessionStorage.getItem('UserCarreraN');
+    getClasificacion();
+    getCarreras();
+</script>
+</body>
+</html>

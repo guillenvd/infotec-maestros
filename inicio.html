@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>INFOTEC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/timeline.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/body.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/json/getNoticias.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+</head>
+<body onload="getNoticias();"> 
+<div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Menu -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation"  style="">
+            <ul class="nav sidebar-nav" id="menu">         
+            </ul>
+        </nav>
+        <!-- /#Menu-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas"  style="">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-lg-offset-2" id="form">
+                        <div class="col-lg-8  container">
+                            <div class="page-header" style="">
+                                    <div class="col-lg-4" id="form" >
+                                        <h1 id="timeline">Noticias <a class="subhead" id="tipo">Generales</a></h1>
+                                    </div>
+                                    <div class="col-lg-8" id="form" style="float: right; text-align:center;">
+                                    <h1 id="timeline"><a class="logas" id="logas"></a></h1>
+                                    </div>
+                            </div>
+                            <ul class="timeline" style="z-index:2;  top:-10px;" id="main-timeline">
+
+
+                            </ul>
+                     </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+</body>
+</html>
