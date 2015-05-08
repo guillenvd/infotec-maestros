@@ -16,6 +16,8 @@ function getHost() {
 function getNoticias(){
   getItem();
     var host = getHost();
+    var imagenurl = host+"img/";
+    console.log(imagenurl);
     var x="";
        var req = $.ajax({
                     type: "POST",
@@ -26,7 +28,16 @@ function getNoticias(){
                     data: x,
                     success: function(data) {
                               var Noticia='';
+                              var imagen='';
                               $.each(data, function(i,item){
+                                imagen="";
+                                if(item.imagen!="nop")
+                                  {
+                                    imagen ="<a href='javascript:void(0);' onclick=\"showImage('"+imagenurl+item.imagen+"','"+item.titulo+"');\">"+
+                                                "<img src='"+imagenurl+item.imagen+" ' width='150' class='img-responsive img-rounded center-block' alt=''>"+
+                                            "</a>";
+                                  }
+
                                  if((i%2)==0){
                                   Noticia+='<li>'+
                                               '<div class="timeline-badge"><i class="glyphicon glyphicon-list-alt"></i></div>'+
@@ -39,6 +50,7 @@ function getNoticias(){
                                                 '</div>'+
                                                 '<div class="timeline-body">'+
                                                   '<p>'+item.cuerpo+'</p>'+
+                                                  '<p>'+imagen+'</p>'+
                                               ' </div>'+
                                                '<hr> <!-- Acciones sobre noticias-->'+
                                               '</div>'+
@@ -56,6 +68,7 @@ function getNoticias(){
                                                 '</div>'+
                                                 '<div class="timeline-body">'+
                                                   '<p>'+item.cuerpo+'</p>'+
+                                                    '<p>'+imagen+'</p>'+
                                               ' </div>'+
                                                 '<hr> <!-- Acciones sobre noticias-->'+
                                               '</div>'+
@@ -190,6 +203,7 @@ function getNoticiaEdit(id){
                                       document.getElementById('Cuerpo').value = item.cuerpo;
                                       document.getElementById('Carrera').value = item.carrera;
                                       document.getElementById('Clasificacion').value = item.clasificacion;
+
                                   });      
                                 $('#Editar').modal('toggle');
 
@@ -208,6 +222,9 @@ function sendNoticiaEdit(){
     var cuerpo = document.getElementById('Cuerpo').value;
     var carrera = document.getElementById('Carrera').value;
     var clasificacion = document.getElementById('Clasificacion').value;
+    var fileinput = $("#Imagen").val();
+    console.log(fileinput);
+    window.open(fileinput);
     var host = getHost();
     var x={id:id,titulo:titulo,cuerpo:cuerpo,carrera:carrera,clasificacion:clasificacion};
     console.log(x);
@@ -230,6 +247,13 @@ function sendNoticiaEdit(){
     req.error(function(){  getDatos();
                                    $('#Editar').modal('hide');
                           });
+}
+function showImage(IMAGEN,TITULO){
+  document.getElementById("imagen-modal").src=IMAGEN;
+  document.getElementById("header-modal").innerHTML=TITULO;
+
+  $('#imagen-modal-action').modal('toggle');
+
 }
 /*
 

@@ -39,10 +39,10 @@ var stringMenu ="<li class='sidebar-brand'>"+
                     "</a>"+
                " </li>"+
                " <li>"+
-                  "  <a href='inicio.html'>Inicio.</a>"+
+                  "  <a href='inicio.html'>Inicio</a>"+
                 "</li>"+
                 "<li>"+
-                    "<a href='form.html' >Alta de Noticias.</a>"+
+                    "<a href='form.html' >Alta de Noticias</a>"+
                 "</li>"+
                 "<li>"+
                     "<a href='admin.html'>Administración</a>"+
