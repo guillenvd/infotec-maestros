@@ -6,7 +6,7 @@ header('Content-type: application/json');
 $password= $_POST['password'];
 $carrera= $_POST['carrera'];
 $conn->set_charset("utf8");
-$sql = "SELECT * FROM coordinadores WHERE password = ".$password." and carrera =".$carrera;
+$sql = "SELECT * FROM coordinadores WHERE password = '".$password."' and carrera =".$carrera;
 $result = $conn->query($sql);
 $nombre ='';
 if ($result->num_rows > 0) {

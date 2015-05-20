@@ -44,9 +44,12 @@ function getCarreras(){
  * @return {[int]}              [estado, 1 sesión correcta,0 sesión fallida]
  */
 function tryLogin(UserC,UserPassword){
+    var carrera =  document.getElementById('Carrera').value;
+    var password = String(document.getElementById('Password').value);
+        var x={'carrera':carrera,'password':password};
         var host = getHost();
-        var x={carrera:UserC,password:UserPassword};
         var url = host+'inicio.html';
+        console.log(x);
        var req = $.ajax({
                     type: "POST",
                     dataType: "json",
@@ -56,7 +59,7 @@ function tryLogin(UserC,UserPassword){
                     data: x,
                     success: function(data) {
                                     if(data['estado']==1){
-                                          sessionStorage.setItem("UserCarrera",UserC);
+                                          sessionStorage.setItem("UserCarrera",carrera);
                                           sessionStorage.setItem("UserCarreraN",data['nombre'] );
                                           window.location.replace(url);
                                        }
@@ -68,7 +71,7 @@ function tryLogin(UserC,UserPassword){
                           }
     });
     req.success(function(){    });
-    req.error(function(){ document.getElementById('alerts').innerHTML="<span class='label label-danger'>Verifique Carrera y Password.</span></br></br>" });
+    req.error(function(){ document.getElementById('alerts').innerHTML="<span class='label label-danger'>Verifique error Carrera y Password.</span></br></br>" });
 }
 /**
  * [login toma los valores de los inputs]
@@ -80,6 +83,6 @@ function login(){
     if(carrera==""||password==""){document.getElementById('alerts').innerHTML="<span class='label label-danger'>No debe de dejar campos vacios</span></br></br>";}
     else{
           document.getElementById('alerts').innerHTML="</br></br>";
-          tryLogin(carrera,password);
+          tryLogin();
       }
   }

@@ -54,3 +54,34 @@ document.getElementById("menu").innerHTML = stringMenu;
 document.getElementById("logas").innerHTML = "Autenticado como: "+sessionStorage.getItem('UserCarreraN');
 
 });
+function cambiarPassword() {
+  //<span class='label label-danger'>No debe de dejar campos vacios</span></br></br>
+  //<span class='label label-success'>Verifique Carrera y Password.</span></br></br>
+  var password = document.getElementById('passwordInput').value;
+  var id = sessionStorage.getItem('UserCarrera');
+  var host = getHost();
+  var x={id:id,password:password};
+  console.log(x);
+  if(password!=""){
+       var req = $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    timeout : 10000,
+                    beforeSend: function() { },
+                    url: host+"php/changePassword.php", 
+                    data: x,
+                    success: function(data) {
+                                document.getElementById('passwordInput').value = "";
+                                document.getElementById('password-msj').innerHTML="<span class='label label-success'>Contraseña cambiada con exito.</span></br></br>";
+                             }, 
+                    error: function() {
+                            //do something
+                          }
+    });
+    req.success(function(){    });
+    req.error(function(){  alert('error'); });
+  }
+  else{
+        document.getElementById('password-msj').innerHTML="<span class='label label-danger'>No puede dejar el campo vacio.</span></br></br>";
+  }
+}

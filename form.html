@@ -133,10 +133,12 @@
 <script src="js/json/form.js"></script>
 
 <script type="text/javascript">
+    sesionTry();
     document.getElementById("Fecha").valueAsDate = new Date();
     document.getElementById("Autor").value = sessionStorage.getItem('UserCarreraN');
     getClasificacion();
     getCarreras();
+
 </script>
 </body>
 </html>

@@ -8,6 +8,9 @@ if ($conn->connect_error) {
 $conn->set_charset("utf8");
 $sql = "DELETE from noticias where id='".$_POST['id']."'";
 $result = $conn->query($sql);
-
+$carpeta = "../img/";
+$nombre = $_POST['id'].".jpg";
+$dir = $carpeta.$nombre;
+unlink($dir);
 $conn->close();
 ?>

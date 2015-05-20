@@ -38,7 +38,7 @@
             </button>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2" id="main">
+                    <div class="col-lg-12" id="main">
          <div class="page-header" style="">
             <div class="col-lg-5" id="form">
                 <h1 id="timeline">Administración <a class="subhead" id="tipo">Noticias publicadas.</a></h1>
@@ -47,6 +47,52 @@
               <h1 id="timeline"><a class="logas" id="logas"></a></h1>
             </div>
         </div>
+
+        <div class="container">
+            <div class="row">
+                 <div class="col-md-8 col-lg-offset-2">
+                    <div class="panel panel-primary" id="panel-id2">
+                        <div class="panel-heading" >
+                            <h3 class="panel-title">Cambiar contraseña</h3>
+                            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                        </div>
+                        <div class="panel-body" id="panel-id" >
+                                <div class="modal-header">
+                                    <h4 class="modal-title custom_align" id="Heading" style="text-align:center;" >
+                                        Nueva Contraseña.
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <center> 
+
+                                        <p id="password-msj">
+                                        
+                                        </p>
+                                        <input class="form-control " maxlength="15" type="password" name="passwordInput" id="passwordInput" placeholder="Contraseña">
+                                    </center>
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" onclick="cambiarPassword();" >
+                                                <span class="glyphicon glyphicon-ok-sign"></span> 
+                                                Cambiar
+                                        </button>
+                                </div>
+                        </div>
+                 </div>
+                </div>
+            </div>
+    </div>
+
+        <div class="container">
+            <div class="row">
+                 <div class="col-md-8 col-lg-offset-2">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading " >
+                            <h3 class="panel-title">Noticias</h3>
+                            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                        </div>
+                        <div class="panel-body" >
+                                
         <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -70,6 +116,12 @@
             -->
         </tbody>
     </table>
+                        </div>
+                 </div>
+                </div>
+            </div>
+    </div>
+
 
 
                     </div>
@@ -81,14 +133,14 @@
 
     </div>
 
-    
+
 <!--  modal para confimar eliminar los campos de una noticia -->
     <div class="modal fade" id="Eliminar" tabindex="-1" role="dialog" aria-labelledby="Editar" aria-hidden="true">
         <div class="modal-dialog">    <!-- modal-content --> 
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Eliminar Noticia</h4>
+                    <h4 class="modal-title custom_align" id="Heading" style="text-align:center;">Eliminar Noticia</h4>
                 </div>
                 <div class="modal-body">
                     <center> 
@@ -103,6 +155,7 @@
             </div>
         </div>    <!-- /.modal-content --> 
     </div>
+
 <!--/moda-->
 <!--  modal para modificar los campos de una noticia -->
 
@@ -113,7 +166,7 @@
                  <input type="hidden" name="id-update" id="id-update"value="id-delete" value="Norway">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Editar registro</h4>
+                    <h4 class="modal-title custom_align" id="Heading" style="text-align:center;">Editar registro</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -165,16 +218,31 @@
 
 
 
-
 <script src="js/json/form.js"></script>
 
     <!-- /#wrapper -->
 <script type="text/javascript">
+$(document).on('click', '.panel-heading span.clickable', function(e){
+    var $this = $(this);
+    if(!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+    }
+})
     $(document).ready(function() {
-      getDatos();
-    getClasificacion();
-    getCarreras();
+        $("#panel-id").parents('.panel').find('.panel-body').hide();
+        $("#panel-id").find('i').removeClass('glyphicon-chevron-dow').addClass('glyphicon-chevron-up');
+        getDatos();
+        getClasificacion();
+        getCarreras();
+      
 } );
+    sesionTry();
 
 </script>
 </body>

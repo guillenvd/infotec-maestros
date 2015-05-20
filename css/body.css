@@ -1,3 +1,15 @@
+
+.clickable{
+    cursor: pointer;   
+}
+
+.panel-heading span {
+  margin-top: -20px;
+  font-size: 15px;
+}
+    input{
+        text-align: center;
+    }
 body {
     position: relative;
     overflow-x: hidden;

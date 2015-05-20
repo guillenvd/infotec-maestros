@@ -213,7 +213,8 @@ function getNoticiaEdit(id){
                           }
     });
     req.success(function(){    });
-    req.error(function(){  alert('error'); })
+    req.error(function(){  alert('error'); });
+
 }
 
 function sendNoticiaEdit(){
