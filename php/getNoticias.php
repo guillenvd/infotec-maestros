@@ -16,8 +16,9 @@ if ($result->num_rows > 0) {
             array_push($return_arr,$row);
         }
 } else {
-    echo "0 results";
-}        
-echo json_encode($return_arr,JSON_UNESCAPED_UNICODE);
+   $return_arr = array('none' => 1);
+}
 $conn->close();
+echo json_encode($return_arr,JSON_UNESCAPED_UNICODE);
+
 ?>

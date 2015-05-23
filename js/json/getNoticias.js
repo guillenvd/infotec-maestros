@@ -29,55 +29,78 @@ function getNoticias(){
                     success: function(data) {
                               var Noticia='';
                               var imagen='';
-                              $.each(data, function(i,item){
-                                imagen="";
-                                if(item.imagen!="nop")
-                                  {
-                                    imagen ="<a href='javascript:void(0);' onclick=\"showImage('"+imagenurl+item.imagen+"','"+item.titulo+"');\">"+
-                                                "<img src='"+imagenurl+item.imagen+" ' width='150' class='img-responsive img-rounded center-block' alt=''>"+
-                                            "</a>";
-                                  }
-
-                                 if((i%2)==0){
-                                  Noticia+='<li>'+
-                                              '<div class="timeline-badge"><i class="glyphicon glyphicon-list-alt"></i></div>'+
-                                              '<div class="timeline-panel">'+
-                                                '<div class="timeline-heading">'+
-                                                ' <h4 class="timeline-title">'+item.titulo+'</h4>'+
-                                                  '<p><small class="text-muted"><i class="glyphicon glyphicon-calendar"></i>'+item.fecha+'</small>'+
-                                                  '<small class="text-muted"><i class="glyphicon glyphicon-bookmark"></i>'+item.autor+'</small></p>'+
-                                                  '<hr>'+
-                                                '</div>'+
-                                                '<div class="timeline-body">'+
-                                                  '<p>'+item.cuerpo+'</p>'+
-                                                  '<p>'+imagen+'</p>'+
-                                              ' </div>'+
-                                               '<hr> <!-- Acciones sobre noticias-->'+
-                                              '</div>'+
-                                          '</li>';
-                                  }
-                                  else{                
-                                             Noticia+='<li class="timeline-inverted">'+
+                              if(data['none'])
+                              {
+                                     var   Noticia='<li class="timeline-inverted">'+
                                                '<div class="timeline-badge"><i class="glyphicon glyphicon-list-alt"></i></div>'+
                                               '<div class="timeline-panel">'+
                                                 '<div class="timeline-heading">'+
-                                                ' <h4 class="timeline-title">'+item.titulo+'</h4>'+
-                                                  '<p><small class="text-muted"><i class="glyphicon glyphicon-calendar"></i> '+item.fecha+'</small>'+
-                                                  '<small class="text-muted"><i class="glyphicon glyphicon-bookmark"></i>'+item.autor+'</small></p>'+
+                                                ' <h4 class="timeline-title"> INFOTEC</h4>'+
                                                   '<hr>'+
                                                 '</div>'+
                                                 '<div class="timeline-body">'+
-                                                  '<p>'+item.cuerpo+'</p>'+
-                                                    '<p>'+imagen+'</p>'+
+                                                  '<p>No hay noticias que mostar</p>'+
                                               ' </div>'+
                                                 '<hr> <!-- Acciones sobre noticias-->'+
+                                                  '<a href="form.html" class="btn btn-default preview-add-button">'+
+                                                    '<span class="glyphicon glyphicon-send"></span> Publique una nueva.'+
+                                                  '</a>'+
                                               '</div>'+
                                           '</li>';
+                                    document.getElementById('main-timeline').innerHTML=Noticia;  
+
+                              }
+                              else{
+                                    $.each(data, function(i,item){
+                                      imagen="";
+                                      if(item.imagen!="nop")
+                                        {
+                                          imagen ="<a href='javascript:void(0);' onclick=\"showImage('"+imagenurl+item.imagen+"','"+item.titulo+"');\">"+
+                                                      "<img src='"+imagenurl+item.imagen+" ' width='150' class='img-responsive img-rounded center-block' alt=''>"+
+                                                  "</a>";
                                         }
 
+                                       if((i%2)==0){
+                                        Noticia+='<li>'+
+                                                    '<div class="timeline-badge"><i class="glyphicon glyphicon-list-alt"></i></div>'+
+                                                    '<div class="timeline-panel">'+
+                                                      '<div class="timeline-heading">'+
+                                                      ' <h4 class="timeline-title">'+item.titulo+'</h4>'+
+                                                        '<p><small class="text-muted"><i class="glyphicon glyphicon-calendar"></i>'+item.fecha+'</small>'+
+                                                        '<small class="text-muted"><i class="glyphicon glyphicon-bookmark"></i>'+item.autor+'</small></p>'+
+                                                        '<hr>'+
+                                                      '</div>'+
+                                                      '<div class="timeline-body">'+
+                                                        '<p>'+item.cuerpo+'</p>'+
+                                                        '<p>'+imagen+'</p>'+
+                                                    ' </div>'+
+                                                     '<hr> <!-- Acciones sobre noticias-->'+
+                                                    '</div>'+
+                                                '</li>';
+                                        }
+                                        else{                
+                                                   Noticia+='<li class="timeline-inverted">'+
+                                                     '<div class="timeline-badge"><i class="glyphicon glyphicon-list-alt"></i></div>'+
+                                                    '<div class="timeline-panel">'+
+                                                      '<div class="timeline-heading">'+
+                                                      ' <h4 class="timeline-title">'+item.titulo+'</h4>'+
+                                                        '<p><small class="text-muted"><i class="glyphicon glyphicon-calendar"></i> '+item.fecha+'</small>'+
+                                                        '<small class="text-muted"><i class="glyphicon glyphicon-bookmark"></i>'+item.autor+'</small></p>'+
+                                                        '<hr>'+
+                                                      '</div>'+
+                                                      '<div class="timeline-body">'+
+                                                        '<p>'+item.cuerpo+'</p>'+
+                                                          '<p>'+imagen+'</p>'+
+                                                    ' </div>'+
+                                                      '<hr> <!-- Acciones sobre noticias-->'+
+                                                    '</div>'+
+                                                '</li>';
+                                              }
 
-                              });      
-                              document.getElementById('main-timeline').innerHTML=Noticia;                     
+
+                                    });      
+                                    document.getElementById('main-timeline').innerHTML=Noticia;
+                              }
                              }, 
                     error: function() {
                             //do something
@@ -223,9 +246,9 @@ function sendNoticiaEdit(){
     var cuerpo = document.getElementById('Cuerpo').value;
     var carrera = document.getElementById('Carrera').value;
     var clasificacion = document.getElementById('Clasificacion').value;
-    var fileinput = $("#Imagen").val();
+    /*var fileinput = $("#Imagen").val();
     console.log(fileinput);
-    window.open(fileinput);
+    window.open(fileinput);*/
     var host = getHost();
     var x={id:id,titulo:titulo,cuerpo:cuerpo,carrera:carrera,clasificacion:clasificacion};
     console.log(x);

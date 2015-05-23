@@ -1,4 +1,4 @@
-<?php
+n<?php
 include('conexion.php');
 header('Content-type: text/html; charset=UTF-8');
 header('Cache-Control: no-cache, must-revalidate');

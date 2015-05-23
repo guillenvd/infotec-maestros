@@ -40,7 +40,6 @@ else{
     $conn->query($sql);
      ?>
 <script type="text/javascript">
-    alert("Publicación exitosa");
     var loc = window.location;
     var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
     var host = loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
